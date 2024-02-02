@@ -1,0 +1,25 @@
+{
+    "name": "residential",
+    //compose options
+    "dockerComposeFile": "./compose.yaml",
+    "service": "back",
+    "shutdownAction": "stopCompose",
+    // "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "workspaceFolder": "/workspace/",
+    // Configure tool-specific properties.
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "golang.go",
+                "GitHub.copilot",
+                "DavidAnson.vscode-markdownlint",
+                "vivaxy.vscode-conventional-commits",
+                "mhutchie.git-graph",
+                "oderwat.indent-rainbow",
+                "vscode-icons-team.vscode-icons"
+                // "jinliming2.vscode-go-template"
+            ]
+        }
+    }
+}
+// https://code.visualstudio.com/docs/editor/variables-reference

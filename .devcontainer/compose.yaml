@@ -1,0 +1,40 @@
+name: landing-prom
+
+services:
+  # database:
+  #   image: postgres:latest
+  #   expose:
+  #     - "5432"
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: david
+  #     POSTGRES_PASSWORD: 123
+  #     POSTGRES_DB: landing
+  #   volumes:
+  #     - landingDB:/var/lib/postgresql/data
+
+  # pgadmin:
+  #   image: dpage/pgadmin4:latest
+  #   ports:
+  #     - "8080:80"
+  #   depends_on:
+  #     - database
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: davidsgv98@gmail.com
+  #     PGADMIN_DEFAULT_PASSWORD: 123
+  #   volumes:
+  #     - pgAdmin:/var/lib/pgadmin
+
+  back:
+    build: .
+    # depends_on:
+    #   - database
+    tty: true
+    volumes:
+      - ..:/workspace:cached
+  #volumes:
+  # landingDB:
+  #   name: "landing_PostgreSQL_DB"
+  # pgAdmin:
+  #   name: pgAdminData
+  #   external: true
