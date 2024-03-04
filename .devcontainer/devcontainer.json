@@ -11,12 +11,14 @@
         "vscode": {
             "extensions": [
                 "golang.go",
-                "GitHub.copilot",
+                //"GitHub.copilot",
                 "DavidAnson.vscode-markdownlint",
                 "vivaxy.vscode-conventional-commits",
                 "mhutchie.git-graph",
                 "oderwat.indent-rainbow",
-                "vscode-icons-team.vscode-icons"
+                "vscode-icons-team.vscode-icons",
+                // "jinliming2.vscode-go-template"
+                // "ritwickdey.LiveServer" //for editing html files without having to create a server
                 // "jinliming2.vscode-go-template"
             ]
         }

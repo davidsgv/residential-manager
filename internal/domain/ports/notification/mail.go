@@ -1,5 +1,6 @@
 package notification
 
 type MailNotification interface {
-	SendMail(from, password, host, port string, to []string) error
+	// SendMail(to []string, subject string, body []byte) error
+	SendHTMLMail(to []string, subject string, bodyData map[string]any, templateDir ...string) error
 }

@@ -1,0 +1,25 @@
+---
+#summary: prueba
+post:
+  tags: 
+    - authentication
+  summary: Login to get a token
+  requestBody:
+    required: true
+    content:
+      application/json:
+        # schema:
+        #   $ref: '../schemas/auth/request.yaml'
+        example:
+          mail: "example@123.com"
+          password: "123"
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/api/success.yaml'
+          example:
+            status: "success"
+            data: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnb29nbGUuY29tIiwicm9sIjoiQWRtaW5pc3RyYWRvciIsInN1YiI6ImV4YW1wbGVAMTIzLmNvbSJ9.kyeGUw2YoSgcseO0d_YNS2E4Ow1NrQaXNvOTyaCADC0"

@@ -1,0 +1,57 @@
+#https://editor.swagger.io/
+#https://swagger.io/specification/v3/
+
+openapi: 3.0.3
+info:
+  title: Residential Manager API
+  description: |- 
+    Residential manager api
+  #termsOfService: http://swagger.io/terms/
+  #contact:
+    #email: apiteam@swagger.#io
+  #license:
+    #name: Apache 2.0
+    #url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+#externalDocs:
+  #description: Find out more about Swagger
+  #url: http://swagger.io
+servers:
+  - url: "{url}/v1"
+    description: development environment
+    variables:
+      url: 
+        default: http://localhost:4000
+        description: the url of the server
+tags:
+  - name: authentication
+    description: Authentication Operations
+  - name: permissions
+    description: Get Application permissions
+  - name: roles
+    description: Get Application Roles
+  - name: users
+    description: Operations about user
+  # - name: visits
+  #   description: Get Application Roles
+paths:
+  /auth/login:
+    $ref: "./paths/login.yaml"
+  /auth/verify/{token}:
+    $ref: "./paths/verify.yaml"
+  /permissions:
+    $ref: "./paths/permissions.yaml"
+  /roles:
+    $ref: "./paths/roles.yaml"
+  # /visits:
+  #   $ref: "./paths/login.yaml"
+security:
+  - api_key: []
+
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: json web tokens for auth
+      name: Authorization
+      in: header

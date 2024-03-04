@@ -1,0 +1,1 @@
+DROP PROCEDURE sp_update_user;

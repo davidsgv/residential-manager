@@ -1,0 +1,57 @@
+---
+parameters:
+  - name: "token"
+    in: "path"
+    required: true
+    schema:
+      type: string
+get:
+  tags: 
+    - authentication
+  summary: get user token verify data
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/api/success.yaml'
+          example:
+            status: "success"
+            data:
+              user:
+                mail: "example@mail.com"
+                rol: "admin"
+                apartment:
+                  block: "A"
+                  number: "101"
+post:
+  tags: 
+    - authentication
+  summary: set the password to a user that is not verified
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/auth/verify.yaml'
+    responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/api/success.yaml'
+          example:
+            status: "success"
+            data:
+              user:
+                mail: "example@mail.com"
+                rol: "admin"
+                apartment:
+                  block: "A"
+                  number: "101"
+#         example:
+#           mail: "example@123.com"
+#           password: "123"
+#   vciIsInN1YiI6ImV4YW1wbGVAMTIzLmNvbSJ9.kyeGUw2YoSgcseO0d_YNS2E4Ow1NrQaXNvOTyaCADC0"

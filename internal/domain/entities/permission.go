@@ -1,15 +1,44 @@
 package entities
 
-import "slices"
+const (
+	CreateAdmin          = 1 << iota // 1 << 0 = 1
+	CreateWatchman                   // 1 << 1 = 2
+	CreateApartmentAdmin             // 1 << 2 = 4
+	CreateResident                   // 1 << 3 = 8
 
-type Permission []string
+	QueryUsers
+	QueryPermissions
+	QueryRoles
 
-// check if the permissions in the argument exists in the type
-func (permission *Permission) ArePermissionsPresent(p2 Permission) bool {
-	for _, e := range p2 {
-		if !slices.Contains(*permission, e) {
-			return false
-		}
+	UpdateUsers
+
+	DeleteUser
+)
+
+const (
+	NotAllowedQueryUsers           = "You dont have enought permissions to query users"
+	NotAllowedCreateAdmin          = ""
+	NotAllowedCreateWatchman       = ""
+	NotAllowedCreateApartmentAdmin = ""
+	NotAllowedCreateResident       = ""
+	NotAllowedQueryPermissions     = ""
+	NotAllowedQueryRoles           = ""
+	NotAllowedUpdateUsers          = ""
+	NotAllowedDeleteUser           = ""
+)
+
+// return all the permissions in the app
+func GetAllPermissions() map[string]int {
+	permissions := map[string]int{
+		"Create Admin":          int(CreateAdmin),
+		"Create Watchman":       int(CreateWatchman),
+		"Create ApartmentAdmin": int(CreateApartmentAdmin),
+		"Create Resident":       int(CreateResident),
+		"Query Users":           int(QueryUsers),
+		"Query Permissions":     int(QueryPermissions),
+		"Query Roles":           int(QueryRoles),
+		"Update User":           int(QueryRoles),
+		"Delete User":           int(DeleteUser),
 	}
-	return true
+	return permissions
 }

@@ -1,0 +1,21 @@
+#summary: prueba
+get:
+  tags: 
+    - roles
+  summary: Get all existing roles
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/api/success.yaml'
+            #$ref: '#/components/schemas/ApiResponse'
+          example:
+            status: "success"
+            data:
+              roles:
+                - Admin
+                - Wathman
+  security:
+    - api_key: []

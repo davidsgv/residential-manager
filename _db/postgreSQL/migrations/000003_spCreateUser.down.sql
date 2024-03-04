@@ -1,0 +1,1 @@
+DROP PROCEDURE sp_create_user;

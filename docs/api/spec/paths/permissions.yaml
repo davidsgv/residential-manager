@@ -1,0 +1,38 @@
+#summary: prueba
+get:
+  tags: 
+    - permissions
+  summary: Get all existing permissions
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/api/success.yaml'
+          example:
+            status: "success"
+            data:
+              permissions:
+                - name: "Create Admin"
+                  operation: 1
+                - name: "Create Watchman"
+                  operation: 2
+                - name: "Create Apartment Admin"
+                  operation: 4
+                - name: "Create Resident"
+                  operation: 8
+                - name: "Query Users"
+                  operation: 16
+    '401':
+      description: Unauthorized operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/api/fail.yaml'
+          example:
+            status: "Unauthorized"
+            message: "token is malformed: token contains an invalid number of segments"
+              
+  security:
+    - api_key: []

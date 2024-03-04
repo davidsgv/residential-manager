@@ -3,6 +3,10 @@ FROM golang:1.21.6-bullseye
 #Herramientas de desarrollo
 RUN go install -v golang.org/x/tools/gopls@latest
 RUN go install -v github.com/go-delve/delve/cmd/dlv@latest
+#migration tool 
+# https://github.com/golang-migrate/migrate
+# https://github.com/golang-migrate/migrate/tree/master/cmd/migrate
+RUN go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@v4.14.1
 
 #Intall nodejs
 # https://docs.docker.com/engine/reference/builder/#shell
