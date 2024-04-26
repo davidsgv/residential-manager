@@ -24,3 +24,6 @@ __debug_bin*
 /web/*.njsproj
 /web/*.sln
 /web/*.sw?
+
+# bun
+/web/bun.lockb
