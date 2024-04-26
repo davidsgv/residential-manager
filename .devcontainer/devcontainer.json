@@ -19,7 +19,9 @@
                 "vscode-icons-team.vscode-icons",
                 // "jinliming2.vscode-go-template"
                 // "ritwickdey.LiveServer" //for editing html files without having to create a server
-                // "jinliming2.vscode-go-template"
+                "jinliming2.vscode-go-template",
+                "ms-azuretools.vscode-docker"
+                // "oven.bun-vscode"
             ]
         }
     }

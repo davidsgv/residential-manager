@@ -45,6 +45,27 @@ services:
       - ../docs/api/spec:/spec/
     depends_on:
       - back
+  # mailhog:
+  #   image: mailhog/mailhog
+  #   ports:
+  #     - "8025:8025"
+  #     - "1025:1025"
+  #   environment:
+  #     MH_AUTH_FILE: /config/auth_file
+  #   volumes:
+  #     - ../config/smpt/:/config/
+  # stunnel:
+  #   image: dweomer/stunnel
+  #   restart: always
+  #   environment:
+  #     - STUNNEL_SERVICE=smtps
+  #     - STUNNEL_ACCEPT=465
+  #     - STUNNEL_CONNECT=mailhog:1025
+  #   volumes:
+  #     - ./ssl/your.domain.tld-chained.cer:/etc/stunnel/stunnel.pem:ro
+  #     - ./ssl/your.domain.tld.key:/etc/stunnel/stunnel.key:ro
+  #   ports:
+  #     - 465:465 # smtp tls
 
 volumes:
   postgresDB:
