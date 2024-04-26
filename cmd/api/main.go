@@ -11,28 +11,17 @@ import (
 	"residential-manager/internal/domain/service"
 	"strconv"
 	"time"
-
-	"github.com/joho/godotenv"
 )
 
 const version = "1.0.0"
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
 	//repos
 	repo := setUpPostgreRepo()
 	defer repo.CloseDB()
-	if err != nil {
-		log.Fatal("Could not connect to DB")
-	}
 	notificator := setUpEmailSender()
 
 	//services
-	// authService := service.NewAuthService(repo, service.AuthConfig{
 	authService := service.NewAuthService(repo, service.AuthConfig{
 		SecretKey: os.Getenv("SECRET_KEY"),
 		Domain:    os.Getenv("DOMAIN"),
@@ -43,12 +32,13 @@ func main() {
 		Path:     os.Getenv("REGISTER_MAIL"),
 	})
 
-	var cfg = api.Config{
-		Env: os.Getenv("ENVIRONMENT"),
-	}
-	cfg.Port, err = strconv.Atoi(os.Getenv("PORT"))
+	port, err := getEnvInt("PORT")
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Fatal(err)
+	}
+	var cfg = api.Config{
+		Env:  os.Getenv("ENVIRONMENT"),
+		Port: *port,
 	}
 
 	app := api.NewAplication(&cfg, api.Services{
@@ -95,7 +85,7 @@ func setUpPostgreRepo() *postgres.PostgresRepo {
 		},
 	})
 	if err != nil {
-		log.Fatal("Could not connect to DB")
+		log.Fatal(err)
 	}
 
 	return repo

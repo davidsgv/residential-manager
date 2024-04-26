@@ -32,6 +32,7 @@ type PostgresRepo struct {
 }
 
 func NewPostgresRepo(config *PostgresConfig) (*PostgresRepo, error) {
+	//TODO add to postgres config an option to set the sslmode, dint hardcode this option.
 	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s "+
 		"password=%s dbname=%s sslmode=disable",
 		config.Host, config.Port, config.User, config.Password, config.DBname)

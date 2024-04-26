@@ -6,6 +6,7 @@ import (
 	"residential-manager/internal/common/validator"
 	"residential-manager/internal/domain/entities"
 	repo "residential-manager/internal/domain/ports/repository"
+	"time"
 
 	"github.com/golang-jwt/jwt/v5"
 )
@@ -80,6 +81,7 @@ func (srv *AuthService) Login(mail, password string) (response response.Response
 		"iss": srv.config.Domain,
 		"sub": mail,
 		"rol": user.Rol,
+		"exp": time.Now().Add(time.Hour * 24 * 7).Unix(),
 	})
 
 	token, err := t.SignedString([]byte(srv.config.SecretKey))
@@ -91,14 +93,13 @@ func (srv *AuthService) Login(mail, password string) (response response.Response
 }
 
 func (srv *AuthService) CheckLogin(tokenstr string) CheckLoginFuncData {
-	jwt.WithIssuer(srv.config.Domain)
 	token, err := jwt.Parse(tokenstr, func(t *jwt.Token) (interface{}, error) {
 		// if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
 		// 	return nil, fmt.Errorf("Unexpected signing method: %v", t.Header["alg"])
 		// }
 		// hmacSampleSecret is a []byte containing your secret, e.g. []byte("my_secret_key")
 		return []byte(srv.config.SecretKey), nil
-	})
+	}, jwt.WithIssuer(srv.config.Domain), jwt.WithExpirationRequired())
 
 	if err != nil {
 		return CheckLoginFuncData{

@@ -1,7 +1,12 @@
 package api
 
+import (
+	"github.com/gofiber/fiber/v2/middleware/cors"
+)
+
 func (app *Aplication) routes() {
-	app.Fiber.Use(app.coorMiddleware)
+	//app.Fiber.Use(app.coorMiddleware)
+	app.Fiber.Use(cors.New())
 
 	app.Fiber.Get("/v1/healthcheck", app.healthcheckHandler)
 	app.Fiber.Post("/v1/auth/login", app.loginHandler)

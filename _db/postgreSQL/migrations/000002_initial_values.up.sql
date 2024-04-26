@@ -32,6 +32,6 @@ INSERT INTO apartment (number, block_id)
 VALUES ('101', 1);
 
 INSERT INTO user_account (uuid, mail, password, verified, apartment_id, rol_id, token, token_expire)
-VALUES ('32dc1674-6e29-4ba3-a190-b484b2b9fab1', 'example@123.com', 
+VALUES ('32dc1674-6e29-4ba3-a190-b484b2b9fab1', 'example@gmail.com', 
     '313233a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a',
     true, 1, 1, 'first user', now());
